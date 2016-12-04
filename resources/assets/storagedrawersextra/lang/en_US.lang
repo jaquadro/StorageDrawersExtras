@@ -1,0 +1,22 @@
+itemGroup.storagedrawersextra=Storage Drawers Extras
+
+tile.extra_drawers.fulldrawers1.name=Basic Drawer
+tile.extra_drawers.fulldrawers2.name=Basic Drawer 1x2
+tile.extra_drawers.fulldrawers4.name=Basic Drawer 2x2
+tile.extra_drawers.halfdrawers2.name=Half Drawers 1x2
+tile.extra_drawers.halfdrawers4.name=Half Drawers 2x2
+
+# Materials (Natura)
+storageDrawers.material.natura:eucalyptus=Eucalyptus
+storageDrawers.material.natura:sakura=Sakura
+storageDrawers.material.natura:ghostwood=Ghostwood
+storageDrawers.material.natura:redwood=Redwood
+storageDrawers.material.natura:bloodwood=Bloodwood
+storageDrawers.material.natura:hopseed=Hopseed
+storageDrawers.material.natura:maple=Maple
+storageDrawers.material.natura:silverbell=Silverbell
+storageDrawers.material.natura:purpleheart=Amaranth
+storageDrawers.material.natura:tigerwood=Tigerwood
+storageDrawers.material.natura:willow=Willow
+storageDrawers.material.natura:darkwood=Darkwood
+storageDrawers.material.natura:fusewood=Fusewood
