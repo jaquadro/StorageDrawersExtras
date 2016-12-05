@@ -6,50 +6,45 @@ import com.jaquadro.minecraft.chameleon.model.CachedBuilderModel;
 import com.jaquadro.minecraft.chameleon.model.ChamModel;
 import com.jaquadro.minecraft.chameleon.model.ProxyBuilderModel;
 import com.jaquadro.minecraft.chameleon.render.ChamRender;
+import com.jaquadro.minecraft.chameleon.render.helpers.ModularBoxRenderer;
 import com.jaquadro.minecraft.chameleon.resources.register.DefaultRegister;
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
-import com.jaquadro.minecraft.storagedrawers.api.storage.EnumBasicDrawer;
-import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.modeldata.DrawerStateModelData;
-import com.jaquadro.minecraft.storagedrawers.client.model.component.DrawerDecoratorModel;
-import com.jaquadro.minecraft.storagedrawersextra.block.BlockExtraDrawers;
+import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
+import com.jaquadro.minecraft.storagedrawersextra.block.BlockTrimExtra;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
 import com.jaquadro.minecraft.storagedrawersextra.core.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExtraDrawerModel extends ChamModel
+public class ExtraTrimModel extends ChamModel
 {
-    public static class Register extends DefaultRegister
+    public static class Register extends DefaultRegister<BlockTrimExtra>
     {
-        public Register () {
-            super(ModBlocks.extraDrawers);
+        public Register (BlockTrimExtra block) {
+            super(block);
         }
 
         @Override
         public List<IBlockState> getBlockStates () {
             List<IBlockState> states = new ArrayList<IBlockState>();
 
-            for (EnumBasicDrawer drawer : EnumBasicDrawer.values()) {
-                for (EnumFacing dir : EnumFacing.HORIZONTALS)
-                    states.add(ModBlocks.extraDrawers.getDefaultState().withProperty(BlockStandardDrawers.BLOCK, drawer).withProperty(BlockDrawers.FACING, dir));
+            for (int i = 0; i < 16; i++) {
+                EnumVariant varient = EnumVariant.byGroupMeta(getBlock().getGroup(), i);
+                if (varient != EnumVariant.DEFAULT)
+                    states.add(getBlock().getDefaultState().withProperty(BlockTrimExtra.META, i));
             }
 
             return states;
@@ -57,7 +52,7 @@ public class ExtraDrawerModel extends ChamModel
 
         @Override
         public IBakedModel getModel (IBlockState state, IBakedModel existingModel) {
-            return new CachedBuilderModel(new Model());
+            return new CachedBuilderModel(new Model(), state);
         }
 
         @Override
@@ -68,12 +63,13 @@ public class ExtraDrawerModel extends ChamModel
         @Override
         public List<ResourceLocation> getTextureResources () {
             List<ResourceLocation> resources = new ArrayList<ResourceLocation>();
-            for (EnumVariant variant : EnumVariant.values()) {
-                if (variant == EnumVariant.DEFAULT)
-                    continue;
 
-                for (TextureFace face : TextureFace.values())
-                    resources.add(face.getLocation(variant));
+            for (int i = 0; i < 16; i++) {
+                EnumVariant varient = EnumVariant.byGroupMeta(getBlock().getGroup(), i);
+                if (varient != EnumVariant.DEFAULT) {
+                    String path = "blocks/" + varient.getDomain() + "/drawers_" + varient.getName() + "_side";
+                    resources.add(new ResourceLocation(StorageDrawersExtra.MOD_ID, path));
+                }
             }
 
             return resources;
@@ -81,41 +77,49 @@ public class ExtraDrawerModel extends ChamModel
     }
 
     public static IBakedModel fromBlock (IBlockState state) {
-        if (!(state instanceof IExtendedBlockState))
-            return new ExtraDrawerModel(state, false, EnumVariant.DEFAULT);
+        if (!(state.getBlock() instanceof BlockTrimExtra))
+            return new ExtraTrimModel(state, false, EnumVariant.DEFAULT);
 
-        IExtendedBlockState xstate = (IExtendedBlockState) state;
-        return new ExtraDrawerModel(state, false, xstate.getValue(BlockExtraDrawers.VARIANT));
+        BlockTrimExtra block = (BlockTrimExtra) state.getBlock();
+        return new ExtraTrimModel(state, false, EnumVariant.byGroupMeta(block.getGroup(), state.getValue(BlockTrimExtra.META)));
     }
 
     public static IBakedModel fromItem (ItemStack stack) {
-        IBlockState state = ModBlocks.extraDrawers.getStateFromMeta(stack.getMetadata());
-        if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("material"))
-            return new ExtraDrawerModel(state, true, EnumVariant.DEFAULT);
+        Block block = Block.getBlockFromItem(stack.getItem());
+        if (!(block instanceof BlockTrimExtra))
+            return new ExtraTrimModel(ModBlocks.extraTrim[0].getDefaultState(), true, EnumVariant.DEFAULT);
 
-        return new ExtraDrawerModel(state, true, EnumVariant.byResource(stack.getTagCompound().getString("material")));
+        BlockTrimExtra blockTrim = (BlockTrimExtra) block;
+        IBlockState state = blockTrim.getStateFromMeta(stack.getMetadata());
+
+        return new ExtraTrimModel(state, false, EnumVariant.byGroupMeta(blockTrim.getGroup(), state.getValue(BlockTrimExtra.META)));
     }
 
-    private ExtraDrawerModel (IBlockState state, boolean mergeLayers, EnumVariant variant) {
-        super(state, mergeLayers, variant);
+    public ExtraTrimModel (IBlockState state, boolean mergeLayers, Object... args) {
+        super(state, mergeLayers, args);
     }
 
     @Override
-    protected void renderMippedLayer (ChamRender renderer, IBlockState state, Object... args) {
+    protected void renderSolidLayer (ChamRender renderer, IBlockState state, Object... args) {
         EnumVariant varient = (EnumVariant) args[0];
 
-        SimpleDrawerRender drawerRender = new SimpleDrawerRender(renderer);
-        drawerRender.render(null, state, BlockPos.ORIGIN, state.getValue(BlockDrawers.FACING), varient);
+        ModularBoxRenderer boxRenderer = new ModularBoxRenderer(renderer);
+        boxRenderer.setColor(ModularBoxRenderer.COLOR_WHITE);
+        boxRenderer.setExteriorIcon(Chameleon.instance.iconRegistry.getIcon(TextureFace.SIDE.getLocation(varient)));
+
+        renderer.targetFaceGroup(true);
+        boxRenderer.renderSolidBox(null, state, BlockPos.ORIGIN, 0, 0, 0, 1, 1, 1);
+        renderer.targetFaceGroup(false);
     }
 
     @Override
     public TextureAtlasSprite getParticleTexture () {
         IBlockState state = getState();
-        if (!(state instanceof IExtendedBlockState))
+        if (!(state.getBlock() instanceof BlockTrimExtra))
             return Chameleon.instance.iconRegistry.getIcon(TextureMap.LOCATION_MISSING_TEXTURE);
 
-        IExtendedBlockState xstate = (IExtendedBlockState) state;
-        EnumVariant variant = xstate.getValue(BlockExtraDrawers.VARIANT);
+        BlockTrimExtra block = (BlockTrimExtra) state.getBlock();
+        EnumVariant variant = EnumVariant.byGroupMeta(block.getGroup(), state.getValue(BlockTrimExtra.META));
         return Chameleon.instance.iconRegistry.getIcon(TextureFace.SIDE.getLocation(variant));
     }
 
@@ -128,25 +132,7 @@ public class ExtraDrawerModel extends ChamModel
         @Override
         protected IBakedModel buildModel (IBlockState state, IBakedModel parent) {
             try {
-                IBakedModel mainModel = ExtraDrawerModel.fromBlock(state);
-                if (!(state instanceof IExtendedBlockState))
-                    return mainModel;
-
-                IExtendedBlockState xstate = (IExtendedBlockState) state;
-                DrawerStateModelData stateModel = xstate.getValue(BlockDrawers.STATE_MODEL);
-
-                try {
-                    if (!DrawerDecoratorModel.shouldHandleState(stateModel))
-                        return mainModel;
-
-                    EnumBasicDrawer drawer = state.getValue(BlockStandardDrawers.BLOCK);
-                    EnumFacing dir = state.getValue(BlockDrawers.FACING);
-
-                    return new DrawerDecoratorModel(mainModel, xstate, drawer, dir, stateModel);
-                }
-                catch (Throwable t) {
-                    return mainModel;
-                }
+                return fromBlock(state);
             }
             catch (Throwable t) {
                 return parent;
@@ -162,9 +148,7 @@ public class ExtraDrawerModel extends ChamModel
         public List<Object> getKey (IBlockState state) {
             try {
                 List<Object> key = new ArrayList<Object>();
-                IExtendedBlockState xstate = (IExtendedBlockState)state;
-                key.add(xstate.getValue(BlockDrawers.STATE_MODEL));
-                key.add(xstate.getValue(BlockExtraDrawers.VARIANT));
+                key.add(state.getValue(BlockTrimExtra.META));
 
                 return key;
             }

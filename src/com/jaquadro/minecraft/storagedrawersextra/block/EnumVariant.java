@@ -28,6 +28,7 @@ public enum EnumVariant implements IStringSerializable
     ;
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
+    private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
 
     private final ResourceLocation resource;
     private final ResourceLocation plankResource;
@@ -81,16 +82,42 @@ public enum EnumVariant implements IStringSerializable
         return slabMeta;
     }
 
+    public int getIndex () {
+        return index;
+    }
+
+    public int getGroupIndex () {
+        return index / 16;
+    }
+
+    public int getGroupMeta () {
+        return index % 16;
+    }
+
     @Nonnull
     public static EnumVariant byResource (String resource) {
         EnumVariant varient = RESOURCE_LOOKUP.get(new ResourceLocation(resource));
         return varient != null ? varient : DEFAULT;
     }
 
+    @Nonnull
+    public static EnumVariant byGroupMeta (int group, int meta) {
+        EnumVariant variant = INDEX_LOOKUP.get(group * 16 + meta);
+        return variant != null ? variant : DEFAULT;
+    }
+
+    public static int groupCount () {
+        return (values().length - 1) / 16 + 1;
+    }
+
     static {
         RESOURCE_LOOKUP = new HashMap<ResourceLocation, EnumVariant>();
-        for (EnumVariant variant : values())
+        INDEX_LOOKUP = new HashMap<Integer, EnumVariant>();
+
+        for (EnumVariant variant : values()) {
             RESOURCE_LOOKUP.put(variant.getResource(), variant);
+            INDEX_LOOKUP.put(variant.getIndex(), variant);
+        }
     }
 
     private static class ID {

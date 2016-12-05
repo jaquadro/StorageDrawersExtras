@@ -59,13 +59,13 @@ public class SimpleDrawerRender
         BlockExtraDrawers block = (BlockExtraDrawers) state.getBlock();
         boolean halfBlock = block.isHalfDepth(state);
 
-        TextureAtlasSprite textureTrim = iconRegistry.getIcon(ExtraDrawerModel.TextureFace.TRIM.getLocation(variant));
-        TextureAtlasSprite textureBack = iconRegistry.getIcon(ExtraDrawerModel.TextureFace.SIDE.getLocation(variant));
+        TextureAtlasSprite textureTrim = iconRegistry.getIcon(TextureFace.TRIM.getLocation(variant));
+        TextureAtlasSprite textureBack = iconRegistry.getIcon(TextureFace.SIDE.getLocation(variant));
         TextureAtlasSprite textureSide = textureBack;
         TextureAtlasSprite textureTop = textureBack;
         if (halfBlock) {
-            textureTop = iconRegistry.getIcon(ExtraDrawerModel.TextureFace.SIDE_H.getLocation(variant));
-            textureSide = iconRegistry.getIcon(ExtraDrawerModel.TextureFace.SIDE_V.getLocation(variant));
+            textureTop = iconRegistry.getIcon(TextureFace.SIDE_H.getLocation(variant));
+            textureSide = iconRegistry.getIcon(TextureFace.SIDE_V.getLocation(variant));
         }
 
         renderHelper.targetFaceGroup(true);
@@ -84,15 +84,15 @@ public class SimpleDrawerRender
         TextureAtlasSprite textureFront = textureBack;
         switch (blockInfo) {
             case FULL1:
-                textureFront = iconRegistry.getIcon(ExtraDrawerModel.TextureFace.FRONT_1.getLocation(variant));
+                textureFront = iconRegistry.getIcon(TextureFace.FRONT_1.getLocation(variant));
                 break;
             case FULL2:
             case HALF2:
-                textureFront = iconRegistry.getIcon(ExtraDrawerModel.TextureFace.FRONT_2.getLocation(variant));
+                textureFront = iconRegistry.getIcon(TextureFace.FRONT_2.getLocation(variant));
                 break;
             case FULL4:
             case HALF4:
-                textureFront = iconRegistry.getIcon(ExtraDrawerModel.TextureFace.FRONT_4.getLocation(variant));
+                textureFront = iconRegistry.getIcon(TextureFace.FRONT_4.getLocation(variant));
                 break;
         }
 

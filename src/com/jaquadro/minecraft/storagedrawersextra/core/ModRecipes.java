@@ -3,6 +3,7 @@ package com.jaquadro.minecraft.storagedrawersextra.core;
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.storage.EnumBasicDrawer;
 import com.jaquadro.minecraft.storagedrawers.config.ConfigManager;
+import com.jaquadro.minecraft.storagedrawersextra.block.BlockTrimExtra;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -65,10 +66,10 @@ public class ModRecipes
                 ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.HALF4, material, config.getBlockRecipeOutput(EnumBasicDrawer.HALF4.getUnlocalizedName()));
                 GameRegistry.addRecipe(new ShapedOreRecipe(result, "yxy", "xxx", "yxy", 'x', slabStack, 'y', "chestWood"));
             }
-            //if (config.isBlockEnabled("trim")) {
-            //    ItemStack result = new ItemStack(ModBlocks.trim, config.getBlockRecipeOutput("trim"), material.getMetadata());
-            //    GameRegistry.addRecipe(new ShapedOreRecipe(result, "xyx", "yyy", "xyx", 'x', "stickWood", 'y', new ItemStack(Blocks.PLANKS, 1, material.getMetadata())));
-            //}
+            if (config.isBlockEnabled("trim") && plankStack != null) {
+                ItemStack result = new ItemStack(ModBlocks.extraTrim[variant.getGroupIndex()], config.getBlockRecipeOutput("trim"), variant.getGroupMeta());
+                GameRegistry.addRecipe(new ShapedOreRecipe(result, "xyx", "yyy", "xyx", 'x', "stickWood", 'y', plankStack));
+            }
         }
     }
 }

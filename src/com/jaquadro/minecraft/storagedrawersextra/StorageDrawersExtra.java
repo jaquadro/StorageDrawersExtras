@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class StorageDrawersExtra
 {
     public static final String MOD_ID = "storagedrawersextra";
-    public static final String MOD_NAME = "Storage Drawers Extra";
+    public static final String MOD_NAME = "Storage Drawers Extras";
     public static final String MOD_VERSION = "@VERSION@";
     public static final String SOURCE_PATH = "com.jaquadro.minecraft.storagedrawersextra.";
 
