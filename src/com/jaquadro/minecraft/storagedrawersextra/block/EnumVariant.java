@@ -12,6 +12,7 @@ import java.util.Map;
 public enum EnumVariant implements IStringSerializable
 {
     DEFAULT(StorageDrawersExtra.MOD_ID, "default", 0, null, 0),
+
     NATURA_EUCALYPTUS(ID.NATURA, "eucalyptus", 1, "overworld_planks", 5, "overworld_slab2", 0),
     NATURA_SAKURA(ID.NATURA, "sakura", 2, "overworld_planks", 7, "overworld_slab2", 2),
     NATURA_GHOSTWOOD(ID.NATURA, "ghostwood", 3, "nether_planks", 0, "nether_slab", 0),
@@ -25,6 +26,23 @@ public enum EnumVariant implements IStringSerializable
     NATURA_WILLOW(ID.NATURA, "willow", 11, "overworld_planks", 4, "overworld_slab", 4),
     NATURA_DARKWOOD(ID.NATURA, "darkwood", 12, "nether_planks", 2, "nether_slab", 2),
     NATURA_FUSEWOOD(ID.NATURA, "fusewood", 13, "nether_planks", 3, "nether_slab", 3),
+
+    BOP_SACREDOAK(ID.BOP, "sacredoak", 14, "planks_0", 0, "wood_slab_0", 0),
+    BOP_CHERRY(ID.BOP, "cherry", 15, "planks_0", 1, "wood_slab_0", 1),
+    BOP_DARK(ID.BOP, "dark", 16, "planks_0", 2, "wood_slab_0", 2),
+    BOP_FIR(ID.BOP, "fir", 17, "planks_0", 3, "wood_slab_0", 3),
+    BOP_ETHEREAL(ID.BOP, "ethereal", 18, "planks_0", 4, "wood_slab_0", 4),
+    BOP_MAGIC(ID.BOP, "magic", 19, "planks_0", 5, "wood_slab_0", 5),
+    BOP_MANGROVE(ID.BOP, "mangrove", 20, "planks_0", 6, "wood_slab_0", 6),
+    BOP_PALM(ID.BOP, "palm", 21, "planks_0", 7, "wood_slab_0", 7),
+    BOP_REDWOOD(ID.BOP, "redwood", 22, "planks_0", 8, "wood_slab_1", 0),
+    BOP_WILLOW(ID.BOP, "willow", 23, "planks_0", 9, "wood_slab_1", 1),
+    BOP_PINE(ID.BOP, "pine", 24, "planks_0", 10, "wood_slab_1", 2),
+    BOP_HELLBARK(ID.BOP, "hellbark", 25, "planks_0", 11, "wood_slab_1", 3),
+    BOP_JACARANDA(ID.BOP, "jacaranda", 26, "planks_0", 12, "wood_slab_1", 4),
+    BOP_MAHOGANY(ID.BOP, "mahogany", 27, "planks_0", 13, "wood_slab_1", 5),
+    BOP_EBONY(ID.BOP, "ebony", 28, "planks_0", 14, "wood_slab_1", 6),
+    BOP_EUCALYPTUS(ID.BOP, "eucalyptus", 29, "planks_0", 15, "wood_slab_1", 7),
     ;
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
@@ -55,10 +73,15 @@ public enum EnumVariant implements IStringSerializable
         return resource.getResourceDomain();
     }
 
+    @Nonnull
+    public String getPath () {
+        return resource.getResourcePath();
+    }
+
     @Override
     @Nonnull
     public String getName () {
-        return resource.getResourcePath();
+        return resource.toString();
     }
 
     @Nonnull
@@ -122,5 +145,6 @@ public enum EnumVariant implements IStringSerializable
 
     private static class ID {
         public static final String NATURA = "Natura";
+        public static final String BOP = "BiomesOPlenty";
     }
 }
