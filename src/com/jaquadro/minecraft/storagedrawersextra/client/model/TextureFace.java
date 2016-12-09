@@ -23,7 +23,7 @@ public enum TextureFace {
         StringBuilder builder = new StringBuilder("blocks/")
             .append(variant.getDomain())
             .append("/drawers_")
-            .append(variant.getName())
+            .append(variant.getPath())
             .append(suffix);
 
         return new ResourceLocation(StorageDrawersExtra.MOD_ID, builder.toString());

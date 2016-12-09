@@ -2,6 +2,8 @@ package com.jaquadro.minecraft.storagedrawersextra.item;
 
 import com.jaquadro.minecraft.chameleon.resources.IItemMeshMapper;
 import com.jaquadro.minecraft.chameleon.resources.IItemVariantProvider;
+import com.jaquadro.minecraft.storagedrawersextra.block.BlockTrimExtra;
+import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
@@ -35,9 +37,11 @@ public class ItemTrimExtra extends ItemBlock
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack itemStack, EntityPlayer player, List<String> list, boolean par4) {
-        if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("material")) {
-            String key = itemStack.getTagCompound().getString("material");
-            list.add(I18n.format("storageDrawers.material", I18n.format("storageDrawers.material." + key)));
+        Block block = Block.getBlockFromItem(itemStack.getItem());
+        if (block instanceof BlockTrimExtra) {
+            BlockTrimExtra trim = (BlockTrimExtra)block;
+            EnumVariant varient = EnumVariant.byGroupMeta(trim.getGroup(), itemStack.getMetadata());
+            list.add(I18n.format("storageDrawers.material", I18n.format("storageDrawers.material." + varient.getName())));
         }
     }
 }

@@ -67,7 +67,7 @@ public class ExtraTrimModel extends ChamModel
             for (int i = 0; i < 16; i++) {
                 EnumVariant varient = EnumVariant.byGroupMeta(getBlock().getGroup(), i);
                 if (varient != EnumVariant.DEFAULT) {
-                    String path = "blocks/" + varient.getDomain() + "/drawers_" + varient.getName() + "_side";
+                    String path = "blocks/" + varient.getDomain() + "/drawers_" + varient.getPath() + "_side";
                     resources.add(new ResourceLocation(StorageDrawersExtra.MOD_ID, path));
                 }
             }
