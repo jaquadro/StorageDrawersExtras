@@ -43,6 +43,36 @@ public enum EnumVariant implements IStringSerializable
     BOP_MAHOGANY(ID.BOP, "mahogany", 27, "planks_0", 13, "wood_slab_1", 5),
     BOP_EBONY(ID.BOP, "ebony", 28, "planks_0", 14, "wood_slab_1", 6),
     BOP_EUCALYPTUS(ID.BOP, "eucalyptus", 29, "planks_0", 15, "wood_slab_1", 7),
+
+    FORESTRY_LARCH(ID.FORESTRY, "larch", 30, "planks.0", 0, "slabs.0", 0),
+    FORESTRY_TEAK(ID.FORESTRY, "teak", 31, "planks.0", 1, "slabs.0", 1),
+    FORESTRY_ACACIA(ID.FORESTRY, "acacia", 32, "planks.0", 2, "slabs.0", 2),
+    FORESTRY_LIME(ID.FORESTRY, "lime", 33, "planks.0", 3, "slabs.0", 3),
+    FORESTRY_CHESTNUT(ID.FORESTRY, "chestnut", 34, "planks.0", 4, "slabs.0", 4),
+    FORESTRY_WENGE(ID.FORESTRY, "wenge", 35, "planks.0", 5, "slabs.0", 5),
+    FORESTRY_BAOBAB(ID.FORESTRY, "baobab", 36, "planks.0", 6, "slabs.0", 6),
+    FORESTRY_SEQUOIA(ID.FORESTRY, "sequoia", 37, "planks.0", 7, "slabs.0", 7),
+    FORESTRY_KAPOK(ID.FORESTRY, "kapok", 38, "planks.0", 8, "slabs.1", 0),
+    FORESTRY_EBONY(ID.FORESTRY, "ebony", 39, "planks.0", 9, "slabs.1", 1),
+    FORESTRY_MAHOGANY(ID.FORESTRY, "mahogany", 40, "planks.0", 10, "slabs.1", 2),
+    FORESTRY_BALSA(ID.FORESTRY, "balsa", 41, "planks.0", 11, "slabs.1", 3),
+    FORESTRY_WILLOW(ID.FORESTRY, "willow", 42, "planks.0", 12, "slabs.1", 4),
+    FORESTRY_WALNUT(ID.FORESTRY, "walnut", 43, "planks.0", 13, "slabs.1", 5),
+    FORESTRY_GREENHEART(ID.FORESTRY, "greenheart", 44, "planks.0", 14, "slabs.1", 6),
+    FORESTRY_CHERRY(ID.FORESTRY, "cherry", 45, "planks.0", 15, "slabs.1", 7),
+    FORESTRY_MAHOE(ID.FORESTRY, "mahoe", 46, "planks.1", 0, "slabs.2", 0),
+    FORESTRY_POPLAR(ID.FORESTRY, "poplar", 47, "planks.1", 1, "slabs.2", 1),
+    FORESTRY_PALM(ID.FORESTRY, "palm", 48, "planks.1", 2, "slabs.2", 2),
+    FORESTRY_PAPAYA(ID.FORESTRY, "papaya", 49, "planks.1", 3, "slabs.2", 3),
+    FORESTRY_PINE(ID.FORESTRY, "pine", 50, "planks.1", 4, "slabs.2", 4),
+    FORESTRY_PLUM(ID.FORESTRY, "plum", 51, "planks.1", 5, "slabs.2", 5),
+    FORESTRY_MAPLE(ID.FORESTRY, "maple", 52, "planks.1", 6, "slabs.2", 6),
+    FORESTRY_CITRUS(ID.FORESTRY, "citrus", 53, "planks.1", 7, "slabs.2", 7),
+    FORESTRY_GIGANTEUM(ID.FORESTRY, "giganteum", 54, "planks.1", 8, "slabs.3", 0),
+    FORESTRY_IPE(ID.FORESTRY, "ipe", 55, "planks.1", 9, "slabs.3", 1),
+    FORESTRY_PADAUK(ID.FORESTRY, "padauk", 56, "planks.1", 10, "slabs.3", 2),
+    FORESTRY_COCOBOLO(ID.FORESTRY, "cocobolo", 57, "planks.1", 11, "slabs.3", 3),
+    FORESTRY_ZEBRAWOOD(ID.FORESTRY, "zebrawood", 58, "planks.1", 12, "slabs.3", 4),
     ;
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
@@ -146,5 +176,6 @@ public enum EnumVariant implements IStringSerializable
     private static class ID {
         public static final String NATURA = "Natura";
         public static final String BOP = "BiomesOPlenty";
+        public static final String FORESTRY = "forestry";
     }
 }

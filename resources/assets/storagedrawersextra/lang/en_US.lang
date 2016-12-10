@@ -22,6 +22,7 @@ storageDrawers.material.natura:willow=Willow
 storageDrawers.material.natura:darkwood=Darkwood
 storageDrawers.material.natura:fusewood=Fusewood
 
+# Materials (Biomes O' Plenty)
 storageDrawers.material.biomesoplenty:sacredoak=Sacred Oak
 storageDrawers.material.biomesoplenty:cherry=Cherry
 storageDrawers.material.biomesoplenty:dark=Umbran
@@ -38,3 +39,34 @@ storageDrawers.material.biomesoplenty:jacaranda=Jacaranda
 storageDrawers.material.biomesoplenty:mahogany=Mahogany
 storageDrawers.material.biomesoplenty:ebony=Ebony
 storageDrawers.material.biomesoplenty:eucalyptus=Eucalyptus
+
+# Materials (Forestry)
+storageDrawers.material.forestry:larch=Larch
+storageDrawers.material.forestry:teak=Teak
+storageDrawers.material.forestry:acacia=Acacia
+storageDrawers.material.forestry:lime=Lime
+storageDrawers.material.forestry:chestnut=Chestnut
+storageDrawers.material.forestry:wenge=Wenge
+storageDrawers.material.forestry:baobab=Baobab
+storageDrawers.material.forestry:sequoia=Sequoia
+storageDrawers.material.forestry:kapok=Kapok
+storageDrawers.material.forestry:ebony=Ebony
+storageDrawers.material.forestry:mahogany=Mahogany
+storageDrawers.material.forestry:balsa=Balsa
+storageDrawers.material.forestry:willow=Willow
+storageDrawers.material.forestry:walnut=Walnut
+storageDrawers.material.forestry:greenheart=Greenheart
+storageDrawers.material.forestry:cherry=Cherry
+storageDrawers.material.forestry:mahoe=Mahoe
+storageDrawers.material.forestry:poplar=Poplar
+storageDrawers.material.forestry:palm=Palm
+storageDrawers.material.forestry:papaya=Papaya
+storageDrawers.material.forestry:pine=Pine
+storageDrawers.material.forestry:plum=Plum
+storageDrawers.material.forestry:maple=Maple
+storageDrawers.material.forestry:citrus=Citrus
+storageDrawers.material.forestry:giganteum=Giant Sequoia
+storageDrawers.material.forestry:ipe=Ipe
+storageDrawers.material.forestry:padauk=Padauk
+storageDrawers.material.forestry:cocobolo=Cocobolo
+storageDrawers.material.forestry:zebrawood=Zebrawood
