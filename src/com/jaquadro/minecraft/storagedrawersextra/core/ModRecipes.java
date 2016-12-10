@@ -3,8 +3,11 @@ package com.jaquadro.minecraft.storagedrawersextra.core;
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawers.api.storage.EnumBasicDrawer;
 import com.jaquadro.minecraft.storagedrawers.config.ConfigManager;
+import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
 import com.jaquadro.minecraft.storagedrawersextra.block.BlockTrimExtra;
+import com.jaquadro.minecraft.storagedrawersextra.block.EnumMod;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
+import com.jaquadro.minecraft.storagedrawersextra.config.ConfigManagerExt;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,9 +28,14 @@ public class ModRecipes
 
     public void init () {
         ConfigManager config = StorageDrawers.config;
+        ConfigManagerExt configExt = StorageDrawersExtra.config;
 
         for (EnumVariant variant : EnumVariant.values()) {
             if (variant == EnumVariant.DEFAULT)
+                continue;
+
+            EnumMod mod = variant.getMod();
+            if (mod == null || !mod.isEnabled(configExt.getModToggleState(mod)))
                 continue;
 
             ItemStack plankStack = null;

@@ -11,7 +11,9 @@ import com.jaquadro.minecraft.chameleon.resources.register.DefaultRegister;
 import com.jaquadro.minecraft.storagedrawers.StorageDrawers;
 import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
 import com.jaquadro.minecraft.storagedrawersextra.block.BlockTrimExtra;
+import com.jaquadro.minecraft.storagedrawersextra.block.EnumMod;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
+import com.jaquadro.minecraft.storagedrawersextra.config.ConfigManagerExt;
 import com.jaquadro.minecraft.storagedrawersextra.core.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -62,14 +64,20 @@ public class ExtraTrimModel extends ChamModel
 
         @Override
         public List<ResourceLocation> getTextureResources () {
+            ConfigManagerExt configExt = StorageDrawersExtra.config;
             List<ResourceLocation> resources = new ArrayList<ResourceLocation>();
 
             for (int i = 0; i < 16; i++) {
-                EnumVariant varient = EnumVariant.byGroupMeta(getBlock().getGroup(), i);
-                if (varient != EnumVariant.DEFAULT) {
-                    String path = "blocks/" + varient.getDomain() + "/drawers_" + varient.getPath() + "_side";
-                    resources.add(new ResourceLocation(StorageDrawersExtra.MOD_ID, path));
-                }
+                EnumVariant variant = EnumVariant.byGroupMeta(getBlock().getGroup(), i);
+                if (variant == EnumVariant.DEFAULT)
+                    continue;
+
+                EnumMod mod = variant.getMod();
+                if (mod == null || !mod.isEnabled(configExt.getModToggleState(mod)))
+                    continue;
+
+                String path = "blocks/" + variant.getDomain() + "/drawers_" + variant.getPath() + "_side";
+                resources.add(new ResourceLocation(StorageDrawersExtra.MOD_ID, path));
             }
 
             return resources;

@@ -1,6 +1,8 @@
 package com.jaquadro.minecraft.storagedrawersextra.block;
 
 import com.jaquadro.minecraft.storagedrawers.api.storage.INetworked;
+import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
+import com.jaquadro.minecraft.storagedrawersextra.config.ConfigManagerExt;
 import com.jaquadro.minecraft.storagedrawersextra.core.ModCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -75,8 +77,14 @@ public class BlockTrimExtra extends Block implements INetworked
 
     @Override
     public void getSubBlocks (Item item, CreativeTabs creativeTabs, List<ItemStack> list) {
+        ConfigManagerExt configExt = StorageDrawersExtra.config;
+
         for (EnumVariant variant : EnumVariant.values()) {
             if (variant == EnumVariant.DEFAULT)
+                continue;
+
+            EnumMod mod = variant.getMod();
+            if (mod == null || !mod.isEnabled(configExt.getModToggleState(mod)))
                 continue;
 
             if (group == variant.getGroupIndex())

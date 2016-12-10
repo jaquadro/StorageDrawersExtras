@@ -78,6 +78,7 @@ public enum EnumVariant implements IStringSerializable
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
     private static final Map<Integer, EnumVariant> INDEX_LOOKUP;
 
+    private final String domain;
     private final ResourceLocation resource;
     private final ResourceLocation plankResource;
     private final ResourceLocation slabResource;
@@ -90,6 +91,7 @@ public enum EnumVariant implements IStringSerializable
     }
 
     EnumVariant (String domain, String name, int index, String plankId, int plankMeta, String slabId, int slabMeta) {
+        this.domain = domain;
         this.plankResource = plankId != null ? new ResourceLocation(domain, plankId) : null;
         this.slabResource = slabId != null ? new ResourceLocation(domain, slabId) : null;
         this.plankMeta = plankMeta;
@@ -112,6 +114,10 @@ public enum EnumVariant implements IStringSerializable
     @Nonnull
     public String getName () {
         return resource.toString();
+    }
+
+    public EnumMod getMod () {
+        return EnumMod.byId(domain);
     }
 
     @Nonnull
@@ -174,7 +180,7 @@ public enum EnumVariant implements IStringSerializable
     }
 
     private static class ID {
-        public static final String NATURA = "Natura";
+        public static final String NATURA = "natura";
         public static final String BOP = "BiomesOPlenty";
         public static final String FORESTRY = "forestry";
     }

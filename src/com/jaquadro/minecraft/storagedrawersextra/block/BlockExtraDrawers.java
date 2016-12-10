@@ -3,6 +3,8 @@ package com.jaquadro.minecraft.storagedrawersextra.block;
 import com.jaquadro.minecraft.storagedrawers.api.storage.EnumBasicDrawer;
 import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.tile.TileEntityDrawers;
+import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
+import com.jaquadro.minecraft.storagedrawersextra.config.ConfigManagerExt;
 import com.jaquadro.minecraft.storagedrawersextra.core.ModCreativeTabs;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -55,9 +57,15 @@ public class BlockExtraDrawers extends BlockStandardDrawers
 
     @Override
     public void getSubBlocks (Item item, CreativeTabs creativeTabs, List<ItemStack> list) {
+        ConfigManagerExt configExt = StorageDrawersExtra.config;
+
         for (EnumBasicDrawer type : EnumBasicDrawer.values()) {
             for (EnumVariant material : EnumVariant.values()) {
                 if (material == EnumVariant.DEFAULT)
+                    continue;
+
+                EnumMod mod = material.getMod();
+                if (mod == null || !mod.isEnabled(configExt.getModToggleState(mod)))
                     continue;
 
                 ItemStack stack = new ItemStack(item, 1, type.getMetadata());

@@ -13,8 +13,11 @@ import com.jaquadro.minecraft.storagedrawers.block.BlockDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
 import com.jaquadro.minecraft.storagedrawers.block.modeldata.DrawerStateModelData;
 import com.jaquadro.minecraft.storagedrawers.client.model.component.DrawerDecoratorModel;
+import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
 import com.jaquadro.minecraft.storagedrawersextra.block.BlockExtraDrawers;
+import com.jaquadro.minecraft.storagedrawersextra.block.EnumMod;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
+import com.jaquadro.minecraft.storagedrawersextra.config.ConfigManagerExt;
 import com.jaquadro.minecraft.storagedrawersextra.core.ModBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -67,9 +70,15 @@ public class ExtraDrawerModel extends ChamModel
 
         @Override
         public List<ResourceLocation> getTextureResources () {
+            ConfigManagerExt configExt = StorageDrawersExtra.config;
             List<ResourceLocation> resources = new ArrayList<ResourceLocation>();
+
             for (EnumVariant variant : EnumVariant.values()) {
                 if (variant == EnumVariant.DEFAULT)
+                    continue;
+
+                EnumMod mod = variant.getMod();
+                if (mod == null || !mod.isEnabled(configExt.getModToggleState(mod)))
                     continue;
 
                 for (TextureFace face : TextureFace.values())
