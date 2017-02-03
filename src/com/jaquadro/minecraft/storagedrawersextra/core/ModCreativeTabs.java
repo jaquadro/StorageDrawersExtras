@@ -1,5 +1,6 @@
 package com.jaquadro.minecraft.storagedrawersextra.core;
 
+import com.jaquadro.minecraft.storagedrawersextra.block.EnumMod;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -19,8 +20,16 @@ public class ModCreativeTabs
         public ItemStack getIconItemStack () {
             ItemStack stack = super.getIconItemStack();
 
+            EnumVariant material = EnumVariant.DEFAULT;
+            for (EnumMod mod : EnumMod.values()) {
+                if (mod.isLoaded()) {
+                    material = mod.getDefaultMaterial();
+                    break;
+                }
+            }
+
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("material", EnumVariant.NATURA_WILLOW.getResource().toString());
+            tag.setString("material", material.getResource().toString());
             stack.setTagCompound(tag);
 
             return stack;

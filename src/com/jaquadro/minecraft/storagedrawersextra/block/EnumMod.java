@@ -6,20 +6,26 @@ import net.minecraftforge.fml.common.Loader;
 
 public enum EnumMod implements IStringSerializable
 {
-    NATURA("natura"),
-    BOP("BiomesOPlenty"),
-    FORESTRY("forestry"),
+    NATURA("natura", EnumVariant.NATURA_WILLOW),
+    BOP("BiomesOPlenty", EnumVariant.BOP_WILLOW),
+    FORESTRY("forestry", EnumVariant.FORESTRY_WILLOW),
     ;
 
     private String id;
+    private EnumVariant defaultMaterial;
 
-    EnumMod (String modId) {
+    EnumMod (String modId, EnumVariant defaultMaterial) {
         this.id = modId;
+        this.defaultMaterial = defaultMaterial;
     }
 
     @Override
     public String getName () {
         return id;
+    }
+
+    public EnumVariant getDefaultMaterial () {
+        return defaultMaterial;
     }
 
     public boolean isLoaded () {
