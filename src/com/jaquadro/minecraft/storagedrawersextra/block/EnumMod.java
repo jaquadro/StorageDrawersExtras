@@ -9,6 +9,7 @@ public enum EnumMod implements IStringSerializable
     NATURA("natura", EnumVariant.NATURA_WILLOW),
     BOP("BiomesOPlenty", EnumVariant.BOP_WILLOW),
     FORESTRY("forestry", EnumVariant.FORESTRY_WILLOW),
+    IMMENG("immersiveengineering", EnumVariant.IMMENG_TREATED)
     ;
 
     private String id;

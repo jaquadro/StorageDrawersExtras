@@ -70,3 +70,6 @@ storageDrawers.material.forestry:ipe=Ipe
 storageDrawers.material.forestry:padauk=Padauk
 storageDrawers.material.forestry:cocobolo=Cocobolo
 storageDrawers.material.forestry:zebrawood=Zebrawood
+
+# Materials (Immersive Engineering)
+storageDrawers.material.immersiveengineering:immeng_treated=Treated Wood

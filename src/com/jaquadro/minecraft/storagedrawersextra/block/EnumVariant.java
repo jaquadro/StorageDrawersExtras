@@ -73,6 +73,8 @@ public enum EnumVariant implements IStringSerializable
     FORESTRY_PADAUK(ID.FORESTRY, "padauk", 56, "planks.1", 10, "slabs.3", 2),
     FORESTRY_COCOBOLO(ID.FORESTRY, "cocobolo", 57, "planks.1", 11, "slabs.3", 3),
     FORESTRY_ZEBRAWOOD(ID.FORESTRY, "zebrawood", 58, "planks.1", 12, "slabs.3", 4),
+
+    IMMENG_TREATED(ID.IMMENG, "immeng_treated", 59, "treatedWood", 0, "treatedWoodSlab", 0),
     ;
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
@@ -183,5 +185,6 @@ public enum EnumVariant implements IStringSerializable
         public static final String NATURA = "natura";
         public static final String BOP = "BiomesOPlenty";
         public static final String FORESTRY = "forestry";
+        public static final String IMMENG = "immersiveengineering";
     }
 }
