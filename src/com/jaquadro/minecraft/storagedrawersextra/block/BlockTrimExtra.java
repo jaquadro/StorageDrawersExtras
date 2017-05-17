@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -36,13 +37,13 @@ public class BlockTrimExtra extends Block implements INetworked
 
     private final int group;
 
-    public BlockTrimExtra (String blockName, int group) {
+    public BlockTrimExtra (String registryName, String blockName, int group) {
         super(Material.WOOD);
 
         this.group = group;
 
         setUnlocalizedName(blockName);
-        setRegistryName(blockName);
+        setRegistryName(registryName);
         setHardness(5f);
         setSoundType(SoundType.WOOD);
         setCreativeTab(ModCreativeTabs.tabStorageDrawers);
@@ -76,7 +77,7 @@ public class BlockTrimExtra extends Block implements INetworked
     }
 
     @Override
-    public void getSubBlocks (Item item, CreativeTabs creativeTabs, List<ItemStack> list) {
+    public void getSubBlocks (Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
         ConfigManagerExt configExt = StorageDrawersExtra.config;
 
         for (EnumVariant variant : EnumVariant.values()) {

@@ -9,15 +9,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 public class ModCreativeTabs
 {
     private ModCreativeTabs () { }
 
-    public static final CreativeTabs tabStorageDrawers = new CreativeTabs("storagedrawersextra") {
-
+    public static final CreativeTabs tabStorageDrawers = new CreativeTabs("storagedrawers") {
         @Override
+        @Nonnull
         @SideOnly(Side.CLIENT)
-        public ItemStack getIconItemStack () {
+        public ItemStack getTabIconItem () {
             ItemStack stack = super.getIconItemStack();
 
             EnumVariant material = EnumVariant.DEFAULT;
@@ -33,16 +35,6 @@ public class ModCreativeTabs
             stack.setTagCompound(tag);
 
             return stack;
-        }
-
-        @Override
-        public Item getTabIconItem () {
-            return Item.getItemFromBlock(ModBlocks.extraDrawers);
-        }
-
-        @Override
-        public int getIconItemDamage () {
-            return 1;
         }
     };
 }

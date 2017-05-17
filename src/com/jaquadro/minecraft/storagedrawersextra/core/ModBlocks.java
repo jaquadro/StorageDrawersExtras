@@ -21,7 +21,7 @@ public class ModBlocks
     public static BlockTrimExtra[] extraTrim;
 
     public void init () {
-        extraDrawers = new BlockExtraDrawers("extra_drawers");
+        extraDrawers = new BlockExtraDrawers("extra_drawers", "extraDrawers");
 
         GameRegistry.register(extraDrawers);
         GameRegistry.register(new ItemExtraDrawers(extraDrawers).setRegistryName(extraDrawers.getRegistryName()));
@@ -31,7 +31,7 @@ public class ModBlocks
 
         extraTrim = new BlockTrimExtra[EnumVariant.groupCount()];
         for (int i = 0; i < extraTrim.length; i++) {
-            extraTrim[i] = new BlockTrimExtra("extra_trim_" + i, i);
+            extraTrim[i] = new BlockTrimExtra("extra_trim_" + i, "extraTrim" + i, i);
 
             GameRegistry.register(extraTrim[i]);
             GameRegistry.register(new ItemTrimExtra(extraTrim[i]).setRegistryName(extraTrim[i].getRegistryName()));
