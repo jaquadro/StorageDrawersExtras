@@ -25,8 +25,6 @@ import net.minecraft.client.renderer.block.model.ItemOverride;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -35,6 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +70,7 @@ public class ExtraDrawerModel extends ChamModel
         @Override
         public List<ResourceLocation> getTextureResources () {
             ConfigManagerExt configExt = StorageDrawersExtra.config;
-            List<ResourceLocation> resources = new ArrayList<ResourceLocation>();
+            List<ResourceLocation> resources = new ArrayList<>();
 
             for (EnumVariant variant : EnumVariant.values()) {
                 if (variant == EnumVariant.DEFAULT)
@@ -97,7 +96,7 @@ public class ExtraDrawerModel extends ChamModel
         return new ExtraDrawerModel(state, false, xstate.getValue(BlockExtraDrawers.VARIANT));
     }
 
-    public static IBakedModel fromItem (ItemStack stack) {
+    public static IBakedModel fromItem (@Nonnull ItemStack stack) {
         IBlockState state = ModBlocks.extraDrawers.getStateFromMeta(stack.getMetadata());
         if (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("material"))
             return new ExtraDrawerModel(state, true, EnumVariant.DEFAULT);
@@ -170,7 +169,7 @@ public class ExtraDrawerModel extends ChamModel
         @Override
         public List<Object> getKey (IBlockState state) {
             try {
-                List<Object> key = new ArrayList<Object>();
+                List<Object> key = new ArrayList<>();
                 IExtendedBlockState xstate = (IExtendedBlockState)state;
                 key.add(xstate.getValue(BlockDrawers.STATE_MODEL));
                 key.add(xstate.getValue(BlockExtraDrawers.VARIANT));
@@ -190,7 +189,7 @@ public class ExtraDrawerModel extends ChamModel
         }
 
         @Override
-        public IBakedModel handleItemState (IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
+        public IBakedModel handleItemState (IBakedModel originalModel, @Nonnull ItemStack stack, World world, EntityLivingBase entity) {
             return fromItem(stack);
         }
     }

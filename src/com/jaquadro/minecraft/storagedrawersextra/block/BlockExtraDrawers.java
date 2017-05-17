@@ -22,11 +22,11 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.common.property.Properties;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 
 public class BlockExtraDrawers extends BlockStandardDrawers
 {
-    public static final IUnlistedProperty<EnumVariant> VARIANT = new Properties.PropertyAdapter<EnumVariant>(PropertyEnum.create("variant", EnumVariant.class));
+    public static final IUnlistedProperty<EnumVariant> VARIANT = new Properties.PropertyAdapter<>(PropertyEnum.create("variant", EnumVariant.class));
 
     public BlockExtraDrawers (String registryName, String blockName) {
         super(registryName, blockName);
@@ -35,6 +35,7 @@ public class BlockExtraDrawers extends BlockStandardDrawers
     }
 
     @Override
+    @Nonnull
     protected ItemStack getMainDrop (IBlockAccess world, BlockPos pos, IBlockState state) {
         ItemStack drop = super.getMainDrop(world, pos, state);
 

@@ -1,20 +1,16 @@
 package com.jaquadro.minecraft.storagedrawersextra.item;
 
-import com.jaquadro.minecraft.chameleon.resources.IItemMeshMapper;
-import com.jaquadro.minecraft.chameleon.resources.IItemVariantProvider;
 import com.jaquadro.minecraft.storagedrawersextra.block.BlockTrimExtra;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class ItemTrimExtra extends ItemBlock
@@ -30,13 +26,14 @@ public class ItemTrimExtra extends ItemBlock
     }
 
     @Override
-    public String getUnlocalizedName (ItemStack stack) {
+    @Nonnull
+    public String getUnlocalizedName (@Nonnull ItemStack stack) {
         return "tile.extra_trim";
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation (ItemStack itemStack, EntityPlayer player, List<String> list, boolean par4) {
+    public void addInformation (@Nonnull ItemStack itemStack, EntityPlayer player, List<String> list, boolean par4) {
         Block block = Block.getBlockFromItem(itemStack.getItem());
         if (block instanceof BlockTrimExtra) {
             BlockTrimExtra trim = (BlockTrimExtra)block;

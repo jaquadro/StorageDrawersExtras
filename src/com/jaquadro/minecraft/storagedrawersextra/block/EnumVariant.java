@@ -172,8 +172,8 @@ public enum EnumVariant implements IStringSerializable
     }
 
     static {
-        RESOURCE_LOOKUP = new HashMap<ResourceLocation, EnumVariant>();
-        INDEX_LOOKUP = new HashMap<Integer, EnumVariant>();
+        RESOURCE_LOOKUP = new HashMap<>();
+        INDEX_LOOKUP = new HashMap<>();
 
         for (EnumVariant variant : values()) {
             RESOURCE_LOOKUP.put(variant.getResource(), variant);

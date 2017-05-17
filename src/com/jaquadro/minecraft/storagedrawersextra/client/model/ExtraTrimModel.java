@@ -28,6 +28,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class ExtraTrimModel extends ChamModel
 
         @Override
         public List<IBlockState> getBlockStates () {
-            List<IBlockState> states = new ArrayList<IBlockState>();
+            List<IBlockState> states = new ArrayList<>();
 
             for (int i = 0; i < 16; i++) {
                 EnumVariant varient = EnumVariant.byGroupMeta(getBlock().getGroup(), i);
@@ -65,7 +66,7 @@ public class ExtraTrimModel extends ChamModel
         @Override
         public List<ResourceLocation> getTextureResources () {
             ConfigManagerExt configExt = StorageDrawersExtra.config;
-            List<ResourceLocation> resources = new ArrayList<ResourceLocation>();
+            List<ResourceLocation> resources = new ArrayList<>();
 
             for (int i = 0; i < 16; i++) {
                 EnumVariant variant = EnumVariant.byGroupMeta(getBlock().getGroup(), i);
@@ -92,7 +93,7 @@ public class ExtraTrimModel extends ChamModel
         return new ExtraTrimModel(state, false, EnumVariant.byGroupMeta(block.getGroup(), state.getValue(BlockTrimExtra.META)));
     }
 
-    public static IBakedModel fromItem (ItemStack stack) {
+    public static IBakedModel fromItem (@Nonnull ItemStack stack) {
         Block block = Block.getBlockFromItem(stack.getItem());
         if (!(block instanceof BlockTrimExtra))
             return new ExtraTrimModel(ModBlocks.extraTrim[0].getDefaultState(), true, EnumVariant.DEFAULT);
@@ -155,7 +156,7 @@ public class ExtraTrimModel extends ChamModel
         @Override
         public List<Object> getKey (IBlockState state) {
             try {
-                List<Object> key = new ArrayList<Object>();
+                List<Object> key = new ArrayList<>();
                 key.add(state.getValue(BlockTrimExtra.META));
 
                 return key;
@@ -173,7 +174,7 @@ public class ExtraTrimModel extends ChamModel
         }
 
         @Override
-        public IBakedModel handleItemState (IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
+        public IBakedModel handleItemState (IBakedModel originalModel, @Nonnull ItemStack stack, World world, EntityLivingBase entity) {
             return fromItem(stack);
         }
     }

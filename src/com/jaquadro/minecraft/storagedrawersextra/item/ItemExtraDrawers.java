@@ -12,6 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ItemExtraDrawers extends ItemDrawers
@@ -23,7 +24,7 @@ public class ItemExtraDrawers extends ItemDrawers
             @Nullable
             @Override
             public Object apply (Object input) {
-                ItemStack stack = (ItemStack)input;
+                @Nonnull ItemStack stack = (ItemStack)input;
                 return EnumBasicDrawer.byMetadata(stack.getMetadata()).getUnlocalizedName();
             }
         });
@@ -36,12 +37,13 @@ public class ItemExtraDrawers extends ItemDrawers
     }
 
     @Override
-    public String getUnlocalizedName (ItemStack stack) {
+    @Nonnull
+    public String getUnlocalizedName (@Nonnull ItemStack stack) {
         return super.getUnlocalizedName() + "." + nameFunction.apply(stack);
     }
 
     @Override
-    public boolean placeBlockAt (ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
+    public boolean placeBlockAt (@Nonnull ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
         if (!super.placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, newState))
             return false;
 

@@ -3,7 +3,6 @@ package com.jaquadro.minecraft.storagedrawersextra.core;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumMod;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;

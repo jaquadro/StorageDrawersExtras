@@ -18,7 +18,7 @@ public class ConfigManagerExt
     private final ConfigSection sectionGeneral;
     private final ConfigSection sectionMods;
 
-    private final Map<EnumMod, EnumToggle> modToggleCache = new HashMap<EnumMod, EnumToggle>();
+    private final Map<EnumMod, EnumToggle> modToggleCache = new HashMap<>();
 
     public ConfigManagerExt (File file) {
         config = new Configuration(file);

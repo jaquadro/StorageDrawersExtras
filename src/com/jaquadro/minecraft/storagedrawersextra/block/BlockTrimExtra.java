@@ -33,7 +33,7 @@ import java.util.List;
 public class BlockTrimExtra extends Block implements INetworked
 {
     public static final PropertyInteger META = PropertyInteger.create("meta", 0, 15);
-    public static final IUnlistedProperty<EnumVariant> VARIANT = new Properties.PropertyAdapter<EnumVariant>(PropertyEnum.create("variant", EnumVariant.class));
+    public static final IUnlistedProperty<EnumVariant> VARIANT = new Properties.PropertyAdapter<>(PropertyEnum.create("variant", EnumVariant.class));
 
     private final int group;
 
@@ -61,7 +61,7 @@ public class BlockTrimExtra extends Block implements INetworked
     }
 
     @Override
-    public void harvestBlock (World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
+    public void harvestBlock (World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, @Nonnull ItemStack stack) {
         super.harvestBlock(worldIn, player, pos, state, te, stack);
         worldIn.setBlockToAir(pos);
     }
