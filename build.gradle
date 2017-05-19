@@ -52,7 +52,7 @@ minecraft {
 
     replaceIn "StorageDrawersExtras.java"
     replace '@VERSION@', project.version
-    replace 'required-after:StorageDrawers', "required-after:StorageDrawers@[${storagedrawers_version},${storagedrawers_max_version})"
+    replace 'required-after:storagedrawers', "required-after:storagedrawers@[${storagedrawers_version},${storagedrawers_max_version})"
 }
 
 sourceSets.main {

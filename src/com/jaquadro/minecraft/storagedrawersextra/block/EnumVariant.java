@@ -183,7 +183,7 @@ public enum EnumVariant implements IStringSerializable
 
     private static class ID {
         public static final String NATURA = "natura";
-        public static final String BOP = "BiomesOPlenty";
+        public static final String BOP = "biomesoplenty";
         public static final String FORESTRY = "forestry";
         public static final String IMMENG = "immersiveengineering";
     }

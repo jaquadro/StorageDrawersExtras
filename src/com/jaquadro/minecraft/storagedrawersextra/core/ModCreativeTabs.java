@@ -3,6 +3,7 @@ package com.jaquadro.minecraft.storagedrawersextra.core;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumMod;
 import com.jaquadro.minecraft.storagedrawersextra.block.EnumVariant;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,12 +15,12 @@ public class ModCreativeTabs
 {
     private ModCreativeTabs () { }
 
-    public static final CreativeTabs tabStorageDrawers = new CreativeTabs("storagedrawers") {
+    public static final CreativeTabs tabStorageDrawers = new CreativeTabs("storagedrawersextra") {
         @Override
         @Nonnull
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem () {
-            ItemStack stack = super.getIconItemStack();
+            @Nonnull ItemStack stack = new ItemStack(Item.getItemFromBlock(ModBlocks.extraDrawers), 1, 1);
 
             EnumVariant material = EnumVariant.DEFAULT;
             for (EnumMod mod : EnumMod.values()) {

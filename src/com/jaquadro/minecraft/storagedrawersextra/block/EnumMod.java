@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
 public enum EnumMod implements IStringSerializable
 {
     NATURA("natura", EnumVariant.NATURA_WILLOW),
-    BOP("BiomesOPlenty", EnumVariant.BOP_WILLOW),
+    BOP("biomesoplenty", EnumVariant.BOP_WILLOW),
     FORESTRY("forestry", EnumVariant.FORESTRY_WILLOW),
     IMMENG("immersiveengineering", EnumVariant.IMMENG_TREATED)
     ;

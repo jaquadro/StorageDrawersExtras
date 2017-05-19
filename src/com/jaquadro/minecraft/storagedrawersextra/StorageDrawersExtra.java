@@ -18,9 +18,9 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import java.io.File;
 
 @Mod(modid = StorageDrawersExtra.MOD_ID, name = StorageDrawersExtra.MOD_NAME, version = StorageDrawersExtra.MOD_VERSION,
-    dependencies = "required-after:StorageDrawers;required-after:Chameleon[2.2.1,2.3.0);after:waila;",
+    dependencies = "required-after:storagedrawers;required-after:chameleon;after:waila;",
     guiFactory = StorageDrawersExtra.SOURCE_PATH + "core.ModGuiFactory",
-    acceptedMinecraftVersions = "[1.9,1.11)")
+    acceptedMinecraftVersions = "[1.11,1.12)")
 public class StorageDrawersExtra
 {
     public static final String MOD_ID = "storagedrawersextra";
