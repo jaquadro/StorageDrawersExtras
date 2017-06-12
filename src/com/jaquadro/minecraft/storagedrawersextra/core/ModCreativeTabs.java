@@ -20,8 +20,6 @@ public class ModCreativeTabs
         @Nonnull
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem () {
-            @Nonnull ItemStack stack = new ItemStack(Item.getItemFromBlock(ModBlocks.extraDrawers), 1, 1);
-
             EnumVariant material = EnumVariant.DEFAULT;
             for (EnumMod mod : EnumMod.values()) {
                 if (mod.isLoaded()) {
@@ -29,6 +27,11 @@ public class ModCreativeTabs
                     break;
                 }
             }
+
+            if (material == EnumVariant.DEFAULT)
+                return com.jaquadro.minecraft.storagedrawers.core.ModCreativeTabs.tabStorageDrawers.getTabIconItem();
+
+            @Nonnull ItemStack stack = new ItemStack(Item.getItemFromBlock(ModBlocks.extraDrawers), 1, 1);
 
             NBTTagCompound tag = new NBTTagCompound();
             tag.setString("material", material.getResource().toString());

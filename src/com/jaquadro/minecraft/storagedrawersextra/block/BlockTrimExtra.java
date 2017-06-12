@@ -77,7 +77,7 @@ public class BlockTrimExtra extends Block implements INetworked
     }
 
     @Override
-    public void getSubBlocks (Item item, CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
+    public void getSubBlocks (CreativeTabs creativeTabs, NonNullList<ItemStack> list) {
         ConfigManagerExt configExt = StorageDrawersExtra.config;
 
         for (EnumVariant variant : EnumVariant.values()) {
@@ -89,7 +89,7 @@ public class BlockTrimExtra extends Block implements INetworked
                 continue;
 
             if (group == variant.getGroupIndex())
-                list.add(new ItemStack(item, 1, variant.getGroupMeta()));
+                list.add(new ItemStack(this, 1, variant.getGroupMeta()));
         }
     }
 
