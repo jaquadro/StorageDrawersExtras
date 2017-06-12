@@ -70,6 +70,25 @@ sourceSets.api {
     }
 }
 
+repositories {
+    maven { // JEI
+        name = "JEI repo"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+    maven { // CraftTweaker
+        name = "jared maven"
+        url "http://maven.blamejared.com/"
+    }
+    maven { // HWYLA
+        name = "HWYLA repo"
+        url "http://tehnut.info/maven"
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven"
+    }
+}
+
 dependencies {
     compile chameleon
     compile storagedrawers
