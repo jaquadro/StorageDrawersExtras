@@ -27,6 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -61,6 +62,13 @@ public class ModBlocks
             registry.register(new ItemExtraDrawers(extraDrawers).setRegistryName(extraDrawers.getRegistryName()));
             for (BlockTrimExtra trim : extraTrim)
                 registry.register(new ItemTrimExtra(trim).setRegistryName(trim.getRegistryName()));
+
+            for (String key : new String[] { "drawerBasic" })
+                OreDictionary.registerOre(key, new ItemStack(extraDrawers, 1, OreDictionary.WILDCARD_VALUE));
+            for (String key : new String[] { "drawerTrim" }) {
+                for (BlockTrimExtra block : extraTrim)
+                    OreDictionary.registerOre(key, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
+            }
         }
 
         private static final ResourceLocation EMPTY_GROUP = new ResourceLocation("", "");
