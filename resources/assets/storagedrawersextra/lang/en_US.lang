@@ -1,8 +1,8 @@
 itemGroup.storagedrawersextra=Storage Drawers Extras
 
 tile.extraDrawers.fulldrawers1.name=Basic Drawer
-tile.extraDrawers.fulldrawers2.name=Basic Drawer 1x2
-tile.extraDrawers.fulldrawers4.name=Basic Drawer 2x2
+tile.extraDrawers.fulldrawers2.name=Basic Drawers 1x2
+tile.extraDrawers.fulldrawers4.name=Basic Drawers 2x2
 tile.extraDrawers.halfdrawers2.name=Half Drawers 1x2
 tile.extraDrawers.halfdrawers4.name=Half Drawers 2x2
 tile.extraTrim.name=Storage Trim
