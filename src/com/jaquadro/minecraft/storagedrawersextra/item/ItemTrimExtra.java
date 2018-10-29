@@ -30,7 +30,7 @@ public class ItemTrimExtra extends ItemBlock
     @Override
     @Nonnull
     public String getUnlocalizedName (@Nonnull ItemStack stack) {
-        return "tile.extra_trim";
+        return "tile.extraTrim";
     }
 
     @Override
