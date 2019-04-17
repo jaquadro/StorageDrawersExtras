@@ -25,6 +25,7 @@ import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.common.property.Properties;
+import net.minecraftforge.fml.common.Loader;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -87,6 +88,10 @@ public class BlockTrimExtra extends Block implements INetworked
             EnumMod mod = variant.getMod();
             if (mod == null || !mod.isEnabled(configExt.getModToggleState(mod)))
                 continue;
+         // only add skyroot if Aether 2 is not installed
+            if (mod == EnumMod.AETHER && variant != EnumVariant.AETHER_SKYROOT
+            		&& !Loader.isModLoaded("aether"))
+            	continue;
 
             if (group == variant.getGroupIndex())
                 list.add(new ItemStack(this, 1, variant.getGroupMeta()));

@@ -11,7 +11,12 @@ public enum EnumMod implements IStringSerializable
     NATURA("natura", EnumVariant.NATURA_WILLOW),
     BOP("biomesoplenty", EnumVariant.BOP_WILLOW),
     FORESTRY("forestry", EnumVariant.FORESTRY_WILLOW),
-    IMMENG("immersiveengineering", EnumVariant.IMMENG_TREATED)
+    IMMENG("immersiveengineering", EnumVariant.IMMENG_TREATED),
+    AETHER("aether", EnumVariant.AETHER_SKYROOT) {
+    	public boolean isLoaded() {
+    		return Loader.isModLoaded("aether") || Loader.isModLoaded("aether_legacy");
+    	}
+    }
     ;
 
     private String id;

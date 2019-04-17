@@ -73,3 +73,9 @@ storagedrawers.material.forestry:zebrawood=Zebrawood
 
 # Materials (Immersive Engineering)
 storagedrawers.material.immersiveengineering:immeng_treated=Treated Wood
+
+# Materials (Aether)
+storagedrawers.material.aether:skyroot=Skyroot
+storagedrawers.material.aether:greatroot=Greatroot
+storagedrawers.material.aether:wisproot=Wisproot
+storagedrawers.material.aether:therawood=Therawood

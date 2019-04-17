@@ -87,7 +87,6 @@ public class ModBlocks
         @SubscribeEvent
         public static void registerRecipes (RegistryEvent.Register<IRecipe> event) {
             IForgeRegistry<IRecipe> registry = event.getRegistry();
-            ConfigManager config = StorageDrawers.config;
             ConfigManagerExt configExt = StorageDrawersExtra.config;
 
             for (EnumVariant variant : EnumVariant.values()) {
@@ -112,38 +111,55 @@ public class ModBlocks
                         slabStack = new ItemStack(block, 1, variant.getSlabMeta());
                 }
 
-                String material = variant.getResource().toString();
-
-                if (config.isBlockEnabled(EnumBasicDrawer.FULL1.getUnlocalizedName()) && !plankStack.isEmpty()) {
-                    @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.FULL1, material, config.getBlockRecipeOutput(EnumBasicDrawer.FULL1.getUnlocalizedName()));
-                    registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xxx", " y ", "xxx", 'x', plankStack, 'y', "chestWood")
-                        .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.FULL1.getUnlocalizedName() + "_" + variant.toString()));
+                registerRecipes(registry, variant, plankStack, slabStack);
+                
+                // attempt to do Aether 1 skyroot as well
+                if (variant == EnumVariant.AETHER_SKYROOT) {
+                	Block block = Block.getBlockFromName("aether_legacy:skyroot_plank");
+                	if (block != null)
+                		plankStack = new ItemStack(block, 1, variant.getPlankMeta());
+                	block = Block.getBlockFromName("aether_legacy:skyroot_slab");
+                	if (block != null)
+                		slabStack = new ItemStack(block, 1, variant.getSlabMeta());
+                	
+                	registerRecipes(registry, variant, plankStack, slabStack);
                 }
-                if (config.isBlockEnabled(EnumBasicDrawer.FULL2.getUnlocalizedName()) && !plankStack.isEmpty()) {
-                    @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.FULL2, material, config.getBlockRecipeOutput(EnumBasicDrawer.FULL2.getUnlocalizedName()));
-                    registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xyx", "xxx", "xyx", 'x', plankStack, 'y', "chestWood")
-                        .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.FULL2.getUnlocalizedName() + "_" + variant.toString()));
-                }
-                if (config.isBlockEnabled(EnumBasicDrawer.FULL4.getUnlocalizedName()) && !plankStack.isEmpty()) {
-                    @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.FULL4, material, config.getBlockRecipeOutput(EnumBasicDrawer.FULL4.getUnlocalizedName()));
-                    registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "yxy", "xxx", "yxy", 'x', plankStack, 'y', "chestWood")
-                        .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.FULL4.getUnlocalizedName() + "_" + variant.toString()));
-                }
-                if (config.isBlockEnabled(EnumBasicDrawer.HALF2.getUnlocalizedName()) && !slabStack.isEmpty()) {
-                    @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.HALF2, material, config.getBlockRecipeOutput(EnumBasicDrawer.HALF2.getUnlocalizedName()));
-                    registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xyx", "xxx", "xyx", 'x', slabStack, 'y', "chestWood")
-                        .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.HALF2.getUnlocalizedName() + "_" + variant.toString()));
-                }
-                if (config.isBlockEnabled(EnumBasicDrawer.HALF4.getUnlocalizedName()) && !slabStack.isEmpty()) {
-                    @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.HALF4, material, config.getBlockRecipeOutput(EnumBasicDrawer.HALF4.getUnlocalizedName()));
-                    registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "yxy", "xxx", "yxy", 'x', slabStack, 'y', "chestWood")
-                        .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.HALF4.getUnlocalizedName() + "_" + variant.toString()));
-                }
-                if (config.isBlockEnabled("trim") && !plankStack.isEmpty()) {
-                    @Nonnull ItemStack result = new ItemStack(ModBlocks.extraTrim[variant.getGroupIndex()], config.getBlockRecipeOutput("trim"), variant.getGroupMeta());
-                    registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xyx", "yyy", "xyx", 'x', "stickWood", 'y', plankStack)
-                        .setRegistryName(result.getItem().getRegistryName() + "_" + variant.toString()));
-                }
+            }
+        }
+        
+        private static void registerRecipes(IForgeRegistry<IRecipe> registry, EnumVariant variant, ItemStack plankStack, ItemStack slabStack) {
+            ConfigManager config = StorageDrawers.config;
+            String material = variant.getResource().toString();
+            
+        	if (config.isBlockEnabled(EnumBasicDrawer.FULL1.getUnlocalizedName()) && !plankStack.isEmpty()) {
+                @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.FULL1, material, config.getBlockRecipeOutput(EnumBasicDrawer.FULL1.getUnlocalizedName()));
+                registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xxx", " y ", "xxx", 'x', plankStack, 'y', "chestWood")
+                    .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.FULL1.getUnlocalizedName() + "_" + variant.toString()));
+            }
+            if (config.isBlockEnabled(EnumBasicDrawer.FULL2.getUnlocalizedName()) && !plankStack.isEmpty()) {
+                @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.FULL2, material, config.getBlockRecipeOutput(EnumBasicDrawer.FULL2.getUnlocalizedName()));
+                registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xyx", "xxx", "xyx", 'x', plankStack, 'y', "chestWood")
+                    .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.FULL2.getUnlocalizedName() + "_" + variant.toString()));
+            }
+            if (config.isBlockEnabled(EnumBasicDrawer.FULL4.getUnlocalizedName()) && !plankStack.isEmpty()) {
+                @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.FULL4, material, config.getBlockRecipeOutput(EnumBasicDrawer.FULL4.getUnlocalizedName()));
+                registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "yxy", "xxx", "yxy", 'x', plankStack, 'y', "chestWood")
+                    .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.FULL4.getUnlocalizedName() + "_" + variant.toString()));
+            }
+            if (config.isBlockEnabled(EnumBasicDrawer.HALF2.getUnlocalizedName()) && !slabStack.isEmpty()) {
+                @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.HALF2, material, config.getBlockRecipeOutput(EnumBasicDrawer.HALF2.getUnlocalizedName()));
+                registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xyx", "xxx", "xyx", 'x', slabStack, 'y', "chestWood")
+                    .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.HALF2.getUnlocalizedName() + "_" + variant.toString()));
+            }
+            if (config.isBlockEnabled(EnumBasicDrawer.HALF4.getUnlocalizedName()) && !slabStack.isEmpty()) {
+                @Nonnull ItemStack result = makeBasicDrawerItemStack(EnumBasicDrawer.HALF4, material, config.getBlockRecipeOutput(EnumBasicDrawer.HALF4.getUnlocalizedName()));
+                registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "yxy", "xxx", "yxy", 'x', slabStack, 'y', "chestWood")
+                    .setRegistryName(result.getItem().getRegistryName() + "_" + EnumBasicDrawer.HALF4.getUnlocalizedName() + "_" + variant.toString()));
+            }
+            if (config.isBlockEnabled("trim") && !plankStack.isEmpty()) {
+                @Nonnull ItemStack result = new ItemStack(ModBlocks.extraTrim[variant.getGroupIndex()], config.getBlockRecipeOutput("trim"), variant.getGroupMeta());
+                registry.register(new ShapedOreRecipe(EMPTY_GROUP, result, "xyx", "yyy", "xyx", 'x', "stickWood", 'y', plankStack)
+                    .setRegistryName(result.getItem().getRegistryName() + "_" + variant.toString()));
             }
         }
 
