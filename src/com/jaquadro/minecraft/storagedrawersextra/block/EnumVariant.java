@@ -122,7 +122,9 @@ public enum EnumVariant implements IStringSerializable
     @Override
     @Nonnull
     public String getName () {
-        return resource.toString();
+    	// good practice to use dots to separate domain and path instead of
+    	// colon in unlocalized name, to support future versions
+        return resource.getResourceDomain() + "." + resource.getResourcePath();
     }
 
     public EnumMod getMod () {
