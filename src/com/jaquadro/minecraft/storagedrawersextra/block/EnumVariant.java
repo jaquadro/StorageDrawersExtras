@@ -1,13 +1,15 @@
 package com.jaquadro.minecraft.storagedrawersextra.block;
 
-import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
+
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.oredict.OreDictionary;
 
 public enum EnumVariant implements IStringSerializable
 {
@@ -74,7 +76,12 @@ public enum EnumVariant implements IStringSerializable
     FORESTRY_COCOBOLO(ID.FORESTRY, "cocobolo", 57, "planks.1", 11, "slabs.3", 3),
     FORESTRY_ZEBRAWOOD(ID.FORESTRY, "zebrawood", 58, "planks.1", 12, "slabs.3", 4),
 
-    IMMENG_TREATED(ID.IMMENG, "immeng_treated", 59, "treatedWood", 0, "treatedWoodSlab", 0),
+    IMMENG_TREATED(ID.IMMENG, "immeng_treated", 59, "treated_wood", OreDictionary.WILDCARD_VALUE, "treated_wood_slab", OreDictionary.WILDCARD_VALUE),
+    
+    AETHER_SKYROOT(ID.AETHER, "skyroot", 60, "skyroot_planks", 0, "skyroot_slab", 0),
+    AETHER_GREATROOT(ID.AETHER, "greatroot", 61, "dark_skyroot_planks", 0, "greatroot_slab", 0),
+    AETHER_WISPROOT(ID.AETHER, "wisproot", 62, "light_skyroot_planks", 0, "wisproot_slab", 0),
+    AETHER_THERAWOOD(ID.AETHER, "therawood", 63, "therawood_planks", 0, "therawood_slab", 0)
     ;
 
     private static final Map<ResourceLocation, EnumVariant> RESOURCE_LOOKUP;
@@ -115,7 +122,9 @@ public enum EnumVariant implements IStringSerializable
     @Override
     @Nonnull
     public String getName () {
-        return resource.toString();
+    	// good practice to use dots to separate domain and path instead of
+    	// colon in unlocalized name, to support future versions
+        return resource.getResourceDomain() + "." + resource.getResourcePath();
     }
 
     public EnumMod getMod () {
@@ -186,5 +195,6 @@ public enum EnumVariant implements IStringSerializable
         public static final String BOP = "biomesoplenty";
         public static final String FORESTRY = "forestry";
         public static final String IMMENG = "immersiveengineering";
+        public static final String AETHER = "aether";
     }
 }

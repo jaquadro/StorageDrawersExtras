@@ -20,6 +20,7 @@ import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.common.property.Properties;
+import net.minecraftforge.fml.common.Loader;
 
 import javax.annotation.Nonnull;
 
@@ -68,6 +69,10 @@ public class BlockExtraDrawers extends BlockStandardDrawers
                 EnumMod mod = material.getMod();
                 if (mod == null || !mod.isEnabled(configExt.getModToggleState(mod)))
                     continue;
+                // only add skyroot if Aether 2 is not installed
+                if (mod == EnumMod.AETHER && material != EnumVariant.AETHER_SKYROOT
+                		&& !Loader.isModLoaded("aether"))
+                	continue;
 
                 ItemStack stack = new ItemStack(this, 1, type.getMetadata());
 
