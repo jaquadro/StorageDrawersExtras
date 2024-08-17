@@ -19,3 +19,6 @@ out/
 runtime-1.8/
 run/
 build/
+src/generated/
+run-data/
+.idea/
