@@ -1,15 +1,11 @@
 package com.jaquadro.minecraft.storagedrawersextra.block;
 
-import com.jaquadro.minecraft.storagedrawers.block.BlockStandardDrawers;
-import com.jaquadro.minecraft.storagedrawers.block.BlockTrim;
 import com.jaquadro.minecraft.storagedrawers.core.ModBlockVariants;
-import com.jaquadro.minecraft.storagedrawers.core.ModBlocks;
 import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
+import com.texelsaurus.minecraft.chameleon.registry.ChameleonRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
 public enum VariantRegistry
 {
@@ -19,10 +15,37 @@ public enum VariantRegistry
     BIOMESOPLENTY_JACARANDA(MODID.BIOMESOPLENTY, "jacaranda", "jacaranda_planks", "jacaranda_slab"),
     BIOMESOPLENTY_PALM(MODID.BIOMESOPLENTY, "palm", "palm_planks", "palm_slab"),
     BIOMESOPLENTY_WILLOW(MODID.BIOMESOPLENTY, "willow", "willow_planks", "willow_slab"),
-    //BIOMESOPLENTY_DEAD(MODID.BIOMESOPLENTY, "dead", "dead_planks", "dead_slab"),
+    BIOMESOPLENTY_DEAD(MODID.BIOMESOPLENTY, "dead", "dead_planks", "dead_slab"),
     BIOMESOPLENTY_MAGIC(MODID.BIOMESOPLENTY, "magic", "magic_planks", "magic_slab"),
-    //BIOMESOPLENTY_UMBRAN(MODID.BIOMESOPLENTY, "umbran", "umbran_planks", "umbran_slab"),
+    BIOMESOPLENTY_UMBRAN(MODID.BIOMESOPLENTY, "umbran", "umbran_planks", "umbran_slab"),
     BIOMESOPLENTY_HELLBARK(MODID.BIOMESOPLENTY, "hellbark", "hellbark_planks", "hellbark_slab"),
+
+    BIOMESWEVEGONE_ASPEN(MODID.BIOMESWEVEGONE, "aspen", "aspen_planks", "aspen_slab"),
+    BIOMESWEVEGONE_BAOBAB(MODID.BIOMESWEVEGONE, "baobab", "baobab_planks", "baobab_slab"),
+    BIOMESWEVEGONE_BLUEENCHANTED(MODID.BIOMESWEVEGONE, "blue_enchanted", "blue_enchanted_planks", "blue_enchanted_slab"),
+    BIOMESWEVEGONE_CIKA(MODID.BIOMESWEVEGONE, "cika", "cika_planks", "cika_slab"),
+    BIOMESWEVEGONE_CYPRESS(MODID.BIOMESWEVEGONE, "cypress", "cypress_planks", "cypress_slab"),
+    BIOMESWEVEGONE_EBONY(MODID.BIOMESWEVEGONE, "ebony", "ebony_planks", "ebony_slab"),
+    BIOMESWEVEGONE_FIR(MODID.BIOMESWEVEGONE, "fir", "fir_planks", "fir_slab"),
+    BIOMESWEVEGONE_FLORUS(MODID.BIOMESWEVEGONE, "florus", "florus_planks", "florus_slab"),
+    BIOMESWEVEGONE_GREENENCHANTED(MODID.BIOMESWEVEGONE, "green_enchanted", "green_enchanted_planks", "green_enchanted_slab"),
+    BIOMESWEVEGONE_HOLLY(MODID.BIOMESWEVEGONE, "holly", "holly_planks", "holly_slab"),
+    BIOMESWEVEGONE_IRONWOOD(MODID.BIOMESWEVEGONE, "ironwood", "ironwood_planks", "ironwood_slab"),
+    BIOMESWEVEGONE_JACARANDA(MODID.BIOMESWEVEGONE, "jacaranda", "jacaranda_planks", "jacaranda_slab"),
+    BIOMESWEVEGONE_MAHOGANY(MODID.BIOMESWEVEGONE, "mahogany", "mahogany_planks", "mahogany_slab"),
+    BIOMESWEVEGONE_MAPLE(MODID.BIOMESWEVEGONE, "maple", "maple_planks", "maple_slab"),
+    BIOMESWEVEGONE_PALM(MODID.BIOMESWEVEGONE, "palm", "palm_planks", "palm_slab"),
+    BIOMESWEVEGONE_PINE(MODID.BIOMESWEVEGONE, "pine", "pine_planks", "pine_slab"),
+    BIOMESWEVEGONE_RAINBOWEUCALYPTUS(MODID.BIOMESWEVEGONE, "rainbow_eucalyptus", "rainbow_eucalyptus_planks", "rainbow_eucalyptus_slab"),
+    BIOMESWEVEGONE_REDWOOD(MODID.BIOMESWEVEGONE, "redwood", "redwood_planks", "redwood_slab"),
+    BIOMESWEVEGONE_SAKURA(MODID.BIOMESWEVEGONE, "sakura", "sakura_planks", "sakura_slab"),
+    BIOMESWEVEGONE_SKYRIS(MODID.BIOMESWEVEGONE, "skyris", "skyris_planks", "skyris_slab"),
+    BIOMESWEVEGONE_WHITEMANGROVE(MODID.BIOMESWEVEGONE, "white_mangrove", "white_mangrove_planks", "white_mangrove_slab"),
+    BIOMESWEVEGONE_WILLOW(MODID.BIOMESWEVEGONE, "willow", "willow_planks", "willow_slab"),
+    BIOMESWEVEGONE_WITCHHAZEL(MODID.BIOMESWEVEGONE, "witch_hazel", "witch_hazel_planks", "witch_hazel_slab"),
+    BIOMESWEVEGONE_ZELKOVA(MODID.BIOMESWEVEGONE, "zelkova", "zelkova_planks", "zelkova_slab"),
+
+    IMMENG_TREATED(MODID.IMMERSIVEENGINEERING, "immeng_treated", "treated_wood_horizontal", "slab_treated_wood_horizontal"),
     ;
 
     private final String modid;
@@ -85,15 +108,17 @@ public enum VariantRegistry
         return "block/" + modid + "/drawers_" + name + "_" + textureVariant;
     }
 
-    public void registerBlocks(DeferredRegister<Block> register) {
+    public void registerBlocks(ChameleonRegistry<Block> register) {
         ModBlockVariants.registerVariant(register, data);
     }
 
-    public void registerItems(DeferredRegister<Item> register) {
+    public void registerItems(ChameleonRegistry<Item> register) {
         ModBlockVariants.registerVariantItem(register, data);
     }
 
     private static class MODID {
         public static final String BIOMESOPLENTY = "biomesoplenty";
+        public static final String BIOMESWEVEGONE = "biomeswevegone";
+        public static final String IMMERSIVEENGINEERING = "immersiveengineering";
     }
 }

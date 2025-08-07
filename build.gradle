@@ -9,7 +9,7 @@ version = "${minecraft_version}-${mod_version}"
 group = mod_group_id
 
 base {
-    archivesName = mod_id
+    archivesName = mod_filename
 }
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -149,18 +149,27 @@ repositories {
         }
     }
     flatDir {
-        dirs 'E:\\Workspace\\Managed\\Forge\\1.20.x\\StorageDrawers\\build\\libs'
+        dirs 'E:\\Workspace\\Managed\\Forge\\1.20.x\\StorageDrawers\\forge\\build\\libs'
     }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    //implementation fg.deobf("curse.maven:storagedrawers-${storagedrawers_projid}:${storagedrawers_fileid}")
-    implementation fg.deobf("com.texelsaur.minecraft.storagedrawers:StorageDrawers-1.20.1:12.5.0");
+    implementation fg.deobf("curse.maven:storagedrawers-${storagedrawers_projid}:${storagedrawers_fileid}")
+    //implementation fg.deobf("com.texelsaur.minecraft.storagedrawers:Storage Drawers-forge-1.20.1:12.11.0");
     implementation fg.deobf("curse.maven:jei-238222:${jei_id}")
+
+    // Content Deps
     implementation fg.deobf("curse.maven:biomes-o-plenty-${biomesoplenty_projid}:${biomesoplenty_fileid}")
+    implementation fg.deobf("curse.maven:immersive-engineering-${immersiveeng_projid}:${immersiveeng_fileid}")
+    implementation fg.deobf("curse.maven:oh-the-biomes-weve-gone-${biomeswevegone_projid}:${biomeswevegone_fileid}")
+
+    // Extended Deps
     implementation fg.deobf("curse.maven:terrablender-${terrablender_projid}:${terrablender_fileid}")
+    implementation fg.deobf("curse.maven:oh-the-trees-youll-grow-${ohthetreesyoullgrow_projid}:${ohthetreesyoullgrow_fileid}")
+    implementation fg.deobf("curse.maven:corgilib-${corgilib_projid}:${corgilib_fileid}")
+    implementation fg.deobf("curse.maven:geckolib-${geckolib_projid}:${geckolib_fileid}")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

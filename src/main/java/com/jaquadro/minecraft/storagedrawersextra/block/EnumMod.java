@@ -9,7 +9,8 @@ import javax.annotation.Nonnull;
 public enum EnumMod implements StringRepresentable
 {
     BOP("biomesoplenty", VariantRegistry.BIOMESOPLENTY_FIR),
-    //IMMENG("immersiveengineering", EnumVariant.IMMENG_TREATED)
+    BIOMESWEVEGONE("biomeswevegone", VariantRegistry.BIOMESWEVEGONE_ASPEN),
+    IMMENG("immersiveengineering", VariantRegistry.IMMENG_TREATED)
     ;
 
     private String id;

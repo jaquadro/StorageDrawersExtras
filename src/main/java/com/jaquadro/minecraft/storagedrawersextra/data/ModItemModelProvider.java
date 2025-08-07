@@ -2,7 +2,6 @@ package com.jaquadro.minecraft.storagedrawersextra.data;
 
 import com.jaquadro.minecraft.storagedrawersextra.StorageDrawersExtra;
 import com.jaquadro.minecraft.storagedrawersextra.block.VariantRegistry;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
